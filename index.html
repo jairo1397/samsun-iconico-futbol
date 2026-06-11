@@ -546,12 +546,6 @@
         function updateDisplayState(partido, layoutOverride = null) {
             const now = getNow();
             
-            // FORZAR HORA A LAS 14:00:00 (2:00 PM) PARA LA VALIDACIÓN
-            if (partido && partido.fecha_hora) {
-                const dateOnlyStr = partido.fecha_hora.split(" ")[0];
-                partido.fecha_hora = `${dateOnlyStr} 14:00:00`;
-            }
-
             // Parsear la fecha y hora del partido ("YYYY-MM-DD HH:mm:ss")
             const matchDateStr = partido.fecha_hora;
             const parts = matchDateStr.split(/[- :]/);
@@ -705,7 +699,7 @@
             // Si no se obtuvo de la API ni de la caché, usar el partido fallback por defecto
             if (!partido) {
                 partido = {
-                    fecha_hora: "2026-06-11 14:00:00",
+                    fecha_hora: "2026-06-11 19:00:00",
                     local: { 
                         nombre: "Ecuador", 
                         codigo_iso: "ECU", 
@@ -723,12 +717,6 @@
                     goles: []
                 };
                 console.log("No hay datos del API ni de caché. Usando partido demo de fallback.");
-            }
-
-            // FORZAR HORA A LAS 14:00:00 (2:00 PM) PARA LA VALIDACIÓN
-            if (partido && partido.fecha_hora) {
-                const dateOnlyStr = partido.fecha_hora.split(" ")[0];
-                partido.fecha_hora = `${dateOnlyStr} 14:00:00`;
             }
 
             // Calcular si el partido ya empezó
